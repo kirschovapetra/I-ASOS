@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+">
+    <bean id="mysource" class="asos.DataSourceMock"/>
+    <bean id="myprocessor" class="asos.DataProcessor">
+        <property name="source" ref="mysource"/>
+    </bean>
+    
+    <bean id="aspectBean" class="asos.MyLogAspect"/>
+    
+    <aop:config>
+        <aop:aspect id="aspect" ref="aspectBean">
+            <aop:pointcut id="pcBefore" expression="execution(* asos.*.*(int))"/>
+            <aop:before method="beforeAdvice" pointcut-ref="pcBefore"/>
+            
+<!--            <aop:pointcut id="pcAfter" expression="execution(* asos.DataSourceIfc.*(..))"/>
+            <aop:after-returning method="returnAdvice" pointcut-ref="pcAfter"/>-->
+                       
+<!--            <aop:pointcut id="pcAround" expression="execution(* asos.*.processData(int))"/>
+            <aop:around method="aroundArgAdvice" pointcut-ref="pcAround"/>-->
+                    
+            <aop:pointcut id="pcAroundClock" expression="execution(* asos.DataProcessor.*(..))"/>
+            <aop:around method="aroundClockAdvice" pointcut-ref="pcAroundClock"/>
+                       
+        </aop:aspect>
+    </aop:config>
+    
+</beans>

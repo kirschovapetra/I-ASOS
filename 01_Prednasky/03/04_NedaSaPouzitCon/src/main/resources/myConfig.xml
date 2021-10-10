@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+">
+    <bean id="mySubject" class="asos.Subject">
+        <property name="observer" ref="myObserver"/>
+        
+    </bean>
+    <bean id="myObserver" class="asos.Observer">
+        <!--<constructor-arg ref="mySubject"/>-->
+        <property name="subject" ref="mySubject"/>
+    </bean>
+</beans>

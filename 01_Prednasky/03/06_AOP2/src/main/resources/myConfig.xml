@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+">
+
+
+    <bean id="opBean" class="asos.MyOperationBean"></bean> 
+    <bean id="trackAspect" class="asos.MyAspectBean"></bean>  
+    
+    <aop:config>  
+        <aop:aspect id="myaspect" ref="trackAspect" >  
+
+            <!-- @Before -->  
+            <aop:pointcut id="pointCutBefore"   expression="execution(* asos.MyOperationBean.m*(..))" />  
+            <aop:before method="myBeforeAdvice" pointcut-ref="pointCutBefore" />  
+            
+             <!--@AfterReturning-->   
+            <aop:pointcut id="pointCutRet"   expression="execution(* asos.MyOperationBean.*(..))" />  
+            <aop:after-returning method="myReturnAdvice" returning="result" pointcut-ref="pointCutRet" />  
+            
+             <!--@Around-->   
+            <aop:pointcut id="pointCutAround"   expression="execution(* asos.MyOperationBean.msg(String)) and args(message)" />  
+            <aop:around method="myAroundAdvice" pointcut-ref="pointCutAround"/>  
+        </aop:aspect>  
+    </aop:config>
+
+</beans>

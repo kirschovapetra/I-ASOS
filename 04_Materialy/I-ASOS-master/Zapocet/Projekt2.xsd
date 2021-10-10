@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="zapocet.asos"
+    xmlns:tns="zapocet.asos"
+    elementFormDefault="qualified">
+    <xsd:element name="hladajTovar">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="nazov" type="xsd:string"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="Tovar">
+        <xsd:sequence>
+            <xsd:element name="nazov" type="xsd:string"></xsd:element>
+            <xsd:element name="cena" type="tns:cenaTyp"></xsd:element>
+            <xsd:element name="dostupnost" type="tns:DostupnostEnum" maxOccurs="1" minOccurs="0"></xsd:element>
+            <xsd:element name="dodavatel" type="xsd:string" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="cenaTyp">
+        <xsd:restriction base="xsd:double">
+            <xsd:minInclusive value="0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="DostupnostEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="NASKLADE"/>
+            <xsd:enumeration value="NEDOSTUPNE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name="hladajTovarExc">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="fault" type="xsd:string"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="hladajTovarRes">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="return" type="tns:Tovar"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="pridajTovar">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="tovar" type="tns:Tovar"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

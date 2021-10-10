@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xml.netbeans.org/schema/poistovna" targetNamespace="http://xml.netbeans.org/schema/poistovna" elementFormDefault="qualified">
+    <xsd:simpleType name="DruhPoistenia">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="cestovne"/>
+            <xsd:enumeration value="zivotne"/>
+            <xsd:enumeration value="urazove"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="NavrhZmluvy">
+        <xsd:sequence>
+            <xsd:element name="druh" type="tns:DruhPoistenia"/>
+            <xsd:element name="poistna-suma" type="tns:poistna-sumaFormat" nillable="true" maxOccurs="1" minOccurs="0"/>
+            <xsd:element name="id" type="xsd:ID"/>
+            <xsd:element name="poistena-osoba" type="xsd:IDREFS"/>
+            <xsd:element name="ucastnik-zmluvy" type="tns:Osoba" maxOccurs="unbounded"/>
+            <xsd:element name="poistnik" type="xsd:IDREFS"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="poistna-sumaFormat">
+        <xsd:restriction base="xsd:decimal">
+            <xsd:fractionDigits value="2"/>
+            <xsd:minInclusive value="10.0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="Osoba">
+        <xsd:sequence>
+            <xsd:element name="meno" type="xsd:string"/>
+            <xsd:element name="rodne-cislo" type="xsd:string"/>
+            <xsd:element name="bydlisko" type="tns:Adresa"/>
+            <xsd:element name="id" type="xsd:ID"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Adresa">
+        <xsd:sequence>
+            <xsd:element name="ulica" type="xsd:string"/>
+            <xsd:element name="obec" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="pscFormat">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[0-9]{5}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="PoistnaZmluva">
+        <xsd:complexContent>
+            <xsd:extension xmlns:tns="http://xml.netbeans.org/schema/poistovna" base="tns:NavrhZmluvy">
+                <xsd:sequence>
+                    <xsd:element name="datum-uzavretia" type="xsd:date"/>
+                    <xsd:element name="cislo-zmluvy" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="podatNavrh">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="navrh" type="tns:NavrhZmluvy"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="podatNavrhRes">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="return" type="tns:PoistnaZmluva"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
