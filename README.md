@@ -4,6 +4,7 @@ Architektúra softvérových systémov (2. ročník ING, zimný semester)
 
 ## Dependencies
 
+```
 <dependencies>
 <dependency>
     <groupId>org.springframework</groupId>
@@ -28,9 +29,11 @@ Architektúra softvérových systémov (2. ročník ING, zimný semester)
     <version>1.8.9</version>
 </dependency>
 </dependencies>
+```
 
 ## AOP
 
+```
 <bean id="aspectBean" class="asos.MyAspectBean"/>
 
 <aop:config>
@@ -40,3 +43,8 @@ Architektúra softvérových systémov (2. ročník ING, zimný semester)
     <aop:after method="loggingAdviceAfter" pointcut-ref="pointCut"/>
 </aop:aspect>
 </aop:config>
+```
+
+### Expression syntax
+
+https://howtodoinjava.com/spring-aop/aspectj-pointcut-expressions/
