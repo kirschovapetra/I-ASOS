@@ -8,6 +8,7 @@
           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 ">
+    
     <bean id="service" class="asos.MessageServiceMock"/>
     <bean id="consumer" class="asos.MessageConsumerMock"/>
     <bean id="processor" class="asos.MessageProcessor">
@@ -15,16 +16,8 @@
         <constructor-arg ref="service"/>
     </bean>
     
-    <bean id="encryptionBean" class="asos.EncryptionAspect"/>
-    
-    <aop:config>
-        <aop:aspect id="encAspect" ref="encryptionBean">
-            <aop:pointcut id="encPointCut" expression="execution(* asos.*.getMessage(..))"/>
-            <aop:around method="encryptAround" pointcut-ref="encPointCut"/>
-            
-            <aop:pointcut id="decPointCut" expression="execution(* asos.*.putMessage(..))"/>
-            <aop:around method="decryptAround" pointcut-ref="decPointCut"/>
-        </aop:aspect>
-    </aop:config>
+    <bean id="aspectBean" class="asos.LoggingAspect"/>
+
+    <aop:aspectj-autoproxy/>
     
 </beans>

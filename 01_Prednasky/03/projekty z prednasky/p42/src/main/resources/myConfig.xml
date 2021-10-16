@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+            http://www.springframework.org/schema/aop 
+            http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+            http://www.springframework.org/schema/context 
+            http://www.springframework.org/schema/context/spring-context-4.3.xsd
+">
+    <bean id="myprocessor" class="asos.DataProcessor">
+<!--        <constructor-arg ref="datasource"/>-->
+        <property name="ds" ref="mysource"/>
+    </bean>
+    <bean id="mysource" class="asos.DataSourceMock"/>
+
+    <bean id="aspectBean" class="asos.MyAspectBean"/>  
+
+    <aop:config>  
+        <aop:aspect id="myaspect" ref="aspectBean" >  
+            <!-- @Before -->  
+<!--            <aop:pointcut id="pointCutBefore"   expression="execution(* asos.*.*(int))" />  
+            <aop:before method="beforeAdvice" pointcut-ref="pointCutBefore" />  -->
+
+            <!-- @AfterReturning -->  
+<!--            <aop:pointcut id="pointCutAfter"   expression="execution(* asos.DataSourceIfc.*(..))" />  
+            <aop:after-returning method="myReturnAdvice" returning="result" pointcut-ref="pointCutAfter" />  -->
+
+<!--             @Around   -->
+<!--            <aop:pointcut id="pointCutAroundData"   expression="execution(* asos.DataSourceIfc.*(..))" />  
+            <aop:around method="myAroundRetAdvice" pointcut-ref="pointCutAroundData"/>  -->
+
+<!--             @Around   -->
+<!--            <aop:pointcut id="pointCutAroundProcess"   expression="execution(* asos.*.processData(int))" />  
+            <aop:around method="myAroundArgAdvice" pointcut-ref="pointCutAroundProcess"/>  -->
+            
+<!--             @Around   -->
+            <aop:pointcut id="pointCutAroundData"   expression="execution(* asos.DataProcessor.*(..))" />  
+            <aop:around method="myAroundClockAdvice" pointcut-ref="pointCutAroundData"/>  
+
+        </aop:aspect>  
+
+    </aop:config>  
+
+</beans>

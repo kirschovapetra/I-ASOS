@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="file:/home/vsa/NetBeansProjects/PostiovnaSchema/src/schema/podatNavrh.wsdl" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/podatNavrh.wsdl"/>
-    <system systemId="file:/home/vsa/NetBeansProjects/PostiovnaSchema/src/schema/poistovna.xsd" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/poistovna.xsd"/>
-</catalog>
