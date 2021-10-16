@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+">
+    <bean id="consumer" class="asos.uloha1.Consumer"/>
+    <bean id="source" class="asos.uloha1.Source"/>
+    <bean id="processor" class="asos.uloha1.Processor">
+        <property name="consumer" ref="consumer"/>
+        <property name="source" ref="source"/>
+    </bean>
+    
+    <bean id="aspectBean" class="asos.uloha1.AspectBean"/>
+    
+    <aop:config>
+        <aop:aspect ref="aspectBean">
+            <aop:after method="countNoArgMethods" pointcut="execution(* asos.uloha1.*.*())"/>
+            <aop:around method="censor" pointcut="execution(* asos.uloha1.*.putMessage(..))"/>
+        </aop:aspect>
+    </aop:config>
+    
+</beans>

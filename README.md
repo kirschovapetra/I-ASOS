@@ -31,6 +31,52 @@ Architektúra softvérových systémov (2. ročník ING, zimný semester)
 </dependencies>
 ```
 
+##  Main app
+
+```
+public static void main(String[] args) {
+    ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+    MessageProcessor mp = context.getBean("processor", MessageProcessor.class);
+    mp.processMessage();
+}
+```
+
+## beans.xml
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+">
+
+    <bean id="service" class="asos.MessageServiceMock"/>
+    ...
+    
+</beans>
+```
+
+<b>setter-based DI</b>
+
+```
+<bean ...>
+    <property name="messageService" ref="service" (autowire="byName/byType")/>
+</bean>
+```
+
+<b>costructor-based DI</b>
+
+```
+<bean ...>
+    <constructor-arg ref="service" (autowire="constructor")/>
+</bean>
+```
+
 ## AOP
 
 ```

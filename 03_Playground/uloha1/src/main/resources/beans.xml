@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+">
+
+    <bean id="source" class="asos.prj79.Source"/>
+    <bean id="processor" class="asos.prj79.Processor">
+        <constructor-arg ref="source"/>
+    </bean>
+    
+    <bean id="aspectId" class="asos.prj79.MyAspect"/>
+    
+    <aop:config>
+        <aop:aspect id="ass" ref="aspectId">
+            <aop:around method="censorGetMessage" pointcut="execution(* asos.prj79.Source.getMessage())"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
