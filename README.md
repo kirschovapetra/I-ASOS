@@ -2,6 +2,9 @@
 
 Architektúra softvérových systémov (2. ročník ING, zimný semester)
 
+https://www.tutorialspoint.com/spring/
+https://www.tutorialspoint.com/spring/spring_overview.htm
+
 ## Dependencies
 
 ```
@@ -61,7 +64,9 @@ public static void main(String[] args) {
 </beans>
 ```
 
-<b>Setter-based DI</b>
+##  Dependency injection
+
+### Setter-based DI
 
 ```
 <bean id="processor" class="asos.springdemo1.MessageProcessor" >
@@ -69,7 +74,7 @@ public static void main(String[] args) {
 </bean>
 ```
 
-<b>Costructor-based DI</b>
+### Costructor-based DI
 
 ```
 <bean id="processor" class="asos.springdemo1.MessageProcessor" >
@@ -77,22 +82,22 @@ public static void main(String[] args) {
 </bean>
 ```
 
-<b>autowire="constructor"</b>
+### autowire="constructor"
 ```
 <bean id="processor" class="asos.springdemo1.MessageProcessor" autowire="constructor" />
 ```
 
-<b>autowire="byName"</b>
+### autowire="byName"
 ```   
 <bean id="processor" class="asos.springdemo1.MessageProcessor" autowire="byName" />
 ```
 
-<b>autowire="byType"</b>
+### autowire="byType"
 ```   
 <bean id="processor" class="asos.springdemo1.MessageProcessor" autowire="byType" />
 ```
 
-<b>Autowiring pomocou anotácí</b>
+### Autowiring pomocou anotácí
 
 - Anotáciu @Autowired môžeme použiť pre anotovanie construktora aj setter-metódy
 - Pre povinné referencie môžeme použiť aj anotáciu @Required
@@ -108,14 +113,12 @@ public static void main(String[] args) {
 public void setMessageService(MessageServiceIfc messageService) {
     this.messageService = messageService;
 }
-
 ```
 
-<b>Component scan</b>
+### Component scan
 ```
 // beans.xml
 <context:component-scan base-package="edu"/>
-
 
 // MessageProcessor.java
 @Component("processor")
@@ -133,15 +136,12 @@ public class MessageProcessor {
     public void setService(MessageServiceIfc service) {
         this.service = service;
     }
-    
     ...  
 }
-
 ```
 
-<b>Java based container configuration</b>
+### Java based container configuration
 ```
-
 // DemoAppConfig.java
 @Configuration
 public class DemoAppConfig {
@@ -168,36 +168,105 @@ mp.processMessage();
 
 ## AOP
 
+<b>beans.xml</b>
 ```
 <bean id="aspectBean" class="<aspectBeanClass>"/>
-
+```
+``` diff
+! <!-- count ako property, CounterAspect musi mat setter -->
+! <bean id="counter" class="asos.springdemo1.CounterAspect" >
+!    <property name="count" value="0" />
+! </bean>
+```
+```
 <aop:config>
 <aop:aspect id="myAspect" ref="aspectBean">
     <aop:pointcut id="pointcut" expression="execution(* asos.*.*())"/>
     <aop:before method="<method>" pointcut-ref="pointcut"/>
     <aop:after method="<method>" pointcut-ref="pointcut"/>
+    <aop:after-returning method="<method>" pointcut-ref="pointcut" returning="result"/>
+    <aop:around method="<method>" pointcut-ref="pointcut"/>
 </aop:aspect>
 </aop:config>
+```
+<b>MyAspect.java</b>
+```
+public void before(JoinPoint jp) {}
+```
+```
+public void after(JoinPoint jp) {}
+```
+```
+// result = navratova hodnota
+public void afterReturning(JoinPoint jp, Object result) {}
+```
+```
+// zmena navratovej hodnoty
+public Object around(ProceedingJoinPoint jp) throws Throwable {
+    Object ret = jp.proceed();
+    Object newRet = "NewRet";
+    return newRet;
+}
+```
+```
+// zmena argumentov
+public Object around(ProceedingJoinPoint jp) throws Throwable {
+    Object arg = jp.getArgs()[0];
+    Object[] newArgs = {"NewArg1"};
+    return jp.proceed(newArgs);
+}
 ```
 
 ### Expression syntax
 
 https://howtodoinjava.com/spring-aop/aspectj-pointcut-expressions/
+https://www.tutorialspoint.com/spring/aop_with_spring.htm
 
-* this - priama trieda ktora vola metodu (musi byt priamo vytvorenia, nie cez proxy triedu)
-* target - trieda ktora vola metodu 
-* execution - presny popis metody
-* args - parametre ktore metoda vola
-
+* <b>this</b> - priama trieda ktora vola metodu (musi byt priamo vytvorenia, nie cez proxy triedu)
+    ```
+    this(<package>.<class>)
+    ```
+* <b>target</b> - trieda ktora vola metodu 
+    ```
+    target(<package>.<class>)
+    ```
+* <b>execution</b> - presny popis metody
+    ```
+    execution(<return_val> <package>.<class>.<method>(<args>))
+    ```
+* <b>args</b> - parametre ktore metoda vola
+    ```
+    args(<arg-name>)
+    ```
+<b>Examples</b>
 ```
-execution(<return_val> <package>.<class>.<method>(<args>))
+<!-- všetky arg. -->
+execution(* asos.*.*(..))
+<!-- bez arg. -->
+execution(* asos.*.*())
+<!-- int arg. -->
+execution(* asos.*.*(int))
 ```
-
-<b>log. spojky:</b>
-
 ```
+<!-- všetky metódy vsetkych tried v packagi asos -->
+execution(* asos.*.*(..))
+```
+```
+<!-- všetky metódy triedy MyOperationBean s menom začínajúcim na m -->
+execution(* asos.aop.MyOperationBean.m*(..))
+```
+```
+<!-- metóda MyOperationBean.msg ktora ma argument 'message' -->
+execution(* asos.aop.MyOperationBean.msg(String)) and args(message)"
+```
+```
+<!-- všetky metódy MyOperationBean -->
+execution(* asos.aop.MyOperationBean.*(..))"
+```
+```
+<!-- logicke spojky -->
 execution(* asos.*.*(..)) && !target(asos.MessageProcessor)
-```
+```  
 
 ### Recap
 

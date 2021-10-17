@@ -8,23 +8,20 @@
           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 ">
-    <bean id="service" class="asos.MessageServiceMock"/>
-    <bean id="consumer" class="asos.MessageConsumerMock"/>
-    <bean id="processor" class="asos.MessageProcessor">
-        <constructor-arg ref="consumer"/>
+    
+    <bean id="service" class="asos.springdemo1.MessageServiceMock" />
+    <bean id="consumer" class="asos.springdemo1.MessageConsumerMock" />
+    <bean id="log" class="asos.springdemo1.LogAspect" />
+   
+    <!-- constructor-based DI -->
+    <bean id="processor" class="asos.springdemo1.MessageProcessor" >
         <constructor-arg ref="service"/>
+        <constructor-arg ref="consumer"/>
     </bean>
     
-    <bean id="encryptionBean" class="asos.EncryptionAspect"/>
-    
     <aop:config>
-        <aop:aspect id="encAspect" ref="encryptionBean">
-            <aop:pointcut id="encPointCut" expression="execution(* asos.*.getMessage(..))"/>
-            <aop:around method="encryptAround" pointcut-ref="encPointCut"/>
-            
-            <aop:pointcut id="decPointCut" expression="execution(* asos.*.putMessage(..))"/>
-            <aop:around method="decryptAround" pointcut-ref="decPointCut"/>
+        <aop:aspect id="aspect" ref="log">
+            <aop:before method="logBefore" pointcut="execution(* asos.*.*(..))"/>
         </aop:aspect>
     </aop:config>
-    
 </beans>
