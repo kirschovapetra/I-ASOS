@@ -61,20 +61,109 @@ public static void main(String[] args) {
 </beans>
 ```
 
-<b>setter-based DI</b>
+<b>Setter-based DI</b>
 
 ```
-<bean ...>
-    <property name="messageService" ref="service" (autowire="byName/byType")/>
+<bean id="processor" class="asos.springdemo1.MessageProcessor" >
+    <property name="service" ref="service"/>
 </bean>
 ```
 
-<b>costructor-based DI</b>
+<b>Costructor-based DI</b>
 
 ```
-<bean ...>
-    <constructor-arg ref="service" (autowire="constructor")/>
+<bean id="processor" class="asos.springdemo1.MessageProcessor" >
+    <constructor-arg ref="service"/>
 </bean>
+```
+
+<b>autowire="constructor"</b>
+```
+<bean id="processor" class="asos.springdemo1.MessageProcessor" autowire="constructor" />
+```
+
+<b>autowire="byName"</b>
+```   
+<bean id="processor" class="asos.springdemo1.MessageProcessor" autowire="byName" />
+```
+
+<b>autowire="byType"</b>
+```   
+<bean id="processor" class="asos.springdemo1.MessageProcessor" autowire="byType" />
+```
+
+<b>Autowiring pomocou anotácí</b>
+
+- Anotáciu @Autowired môžeme použiť pre anotovanie construktora aj setter-metódy
+- Pre povinné referencie môžeme použiť aj anotáciu @Required
+- Pre nepovinné referencie môžeme použiť @Autowired(required = false))
+   
+```   
+<context:annotation-config/>
+<bean id="service" class="asos.springapp1.MessageServiceMock"/>
+<bean id="processor" class="asos.springapp1.MessageProcessor"/>
+
+@Autowired
+@Required
+public void setMessageService(MessageServiceIfc messageService) {
+    this.messageService = messageService;
+}
+
+```
+
+<b>Component scan</b>
+```
+// beans.xml
+<context:component-scan base-package="edu"/>
+
+
+// MessageProcessor.java
+@Component("processor")
+public class MessageProcessor {
+    MessageServiceIfc service;
+
+    @Autowired
+    @Required
+    public MessageProcessor(MessageServiceIfc service) {
+        this.service = service;
+    }
+
+//    @Autowired
+//    @Required
+    public void setService(MessageServiceIfc service) {
+        this.service = service;
+    }
+    
+    ...  
+}
+
+```
+
+<b>Java based container configuration</b>
+```
+
+// DemoAppConfig.java
+@Configuration
+public class DemoAppConfig {
+    @Bean(name = "service")
+    public MessageServiceIfc serviceFactory() {
+        return new MessageServiceMock();
+    }
+
+    @Bean(name = "processor")
+    public MessageProcessor processorFactory(@Named("service") MessageServiceIfc ms) {
+        return new MessageProcessor(ms);
+    }
+}
+
+// MessageProcessor.java
+Named("processor")
+public class MessageProcessor {...}
+
+// DemoApp.java
+ApplicationContext c = new AnnotationConfigApplicationContext(DemoAppConfig.class);
+MessageProcessor mp = c.getBean("processor", MessageProcessor.class);
+mp.processMessage();
 ```
 
 ## AOP
