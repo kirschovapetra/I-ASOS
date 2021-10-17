@@ -19,8 +19,9 @@ public class DemoApp {
         mp.processMessage();
         mp.processMessage();
         
-        System.out.println("\nPocet volani: " + GetMessageCounter.count);
-        System.out.println("Celkova sum: " + GetMessageCounter.sum);
+        GetMessageCounter counter = context.getBean("counterAspectBean", GetMessageCounter.class);
+        System.out.println("\nPocet volani: " + counter.getCount());
+        System.out.println("Celkova sum: " + counter.getSum());
         
         System.out.println("");
     }

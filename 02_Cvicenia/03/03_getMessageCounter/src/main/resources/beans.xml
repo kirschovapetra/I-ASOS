@@ -16,7 +16,10 @@
     </bean>
     
     <bean id="logAspectBean" class="asos.LoggingAspect"/>
-    <bean id="counterAspectBean" class="asos.GetMessageCounter"/>
+    <bean id="counterAspectBean" class="asos.GetMessageCounter">
+        <property name="count" value="0"/>
+        <property name="sum" value="0"/>
+    </bean>
 
     <aop:config>
 <!--        <aop:aspect id="logAspect" ref="logAspectBean">

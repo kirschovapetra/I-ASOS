@@ -5,9 +5,27 @@ import org.aspectj.lang.JoinPoint;
 
 public class GetMessageCounter {
     
-    public static int count = 0;
-    public static int sum = 0;
+    public int count = 0;
+    public int sum = 0;
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public int getSum() {
+        return sum;
+    }
+
+    public void setSum(int sum) {
+        this.sum = sum;
+    }
+
+    
+    
     public void addBefore(JoinPoint jp) {
         System.out.println("[addBefore] getMessage zavolana "
                 + ++count + " krat");
