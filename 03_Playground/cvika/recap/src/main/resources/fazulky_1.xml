@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+">
+
+    <bean id="service" class="asos.MessageService"/>
+    <bean id="consumer" class="asos.aop.MessageConsumer"/>
+    <bean id="processor" class="asos.aop.MessageProcessor">
+        <property name="ms" ref="service"/>
+        <property name="mc" ref="consumer"/>
+    </bean>
+    
+    <bean id="asp" class="asos.aop.Aspecc">
+        <property name="countAll" value="0"/>
+        <property name="sumAll" value="0"/>
+    </bean>
+    
+    <aop:config>
+        <aop:aspect id="aspect" ref="asp">
+            <aop:before method="logujem" pointcut="execution(* asos.aop.*.*(..)) or execution(* asos.*.*(..) )"/>
+        </aop:aspect>
+        <aop:aspect id="aspect2" ref="asp">
+            <aop:before method="gmCount" pointcut="execution(* asos.aop.*.getMessage(..)) or execution(* asos.*.getMessage(..) )"/>
+            <aop:around method="sifruj" pointcut="execution(* asos.aop.*.getMessage(..)) or execution(* asos.*.getMessage(..) )"/>
+            <aop:around method="desifruj" pointcut="execution(* asos.aop.*.putMessage(..)) or execution(* asos.*.putMessage(..) )"/>
+            <aop:after-returning method="gmSum" returning="ret" pointcut="execution(* asos.aop.*.getMessage(..)) or execution(* asos.*.getMessage(..) )"/>
+        </aop:aspect>
+    </aop:config>
+    
+</beans>

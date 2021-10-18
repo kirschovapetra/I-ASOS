@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+">
+
+   <bean id="source" class="asos.nejakyZapocet.Source">
+       <property name="count" value="0"/>
+   </bean>
+   <bean id="consumer" class="asos.nejakyZapocet.Consumer"/>
+   <bean id="processor" class="asos.nejakyZapocet.Processor">
+       <constructor-arg ref="source"/>
+       <constructor-arg ref="consumer"/>
+   </bean>
+    
+   <bean id="cenz" class="asos.nejakyZapocet.CenzurovaciAspect">
+       <property name="count" value="0"/>
+   </bean>
+    
+   <aop:config>
+       <aop:aspect id="a" ref="cenz">
+           <aop:pointcut id="pc" expression="execution(* asos.nejakyZapocet.Consumer.putMessage(String))"/>
+           <aop:pointcut id="pc2" expression="execution(void asos.nejakyZapocet.*.*(..))"/>
+           <aop:pointcut id="pc3" expression="execution(* asos.nejakyZapocet.Processor.processMessage())"/>
+           <aop:around method="cenzura" pointcut-ref="pc"/>
+           <aop:before method="pocitaj" pointcut-ref="pc2"/>
+       </aop:aspect>
+   </aop:config>
+    
+</beans>

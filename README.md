@@ -38,7 +38,7 @@ https://www.tutorialspoint.com/spring/spring_overview.htm
 
 ```
 public static void main(String[] args) {
-    ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+    ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml"); // new AnnotationConfigApplicationContext(AppConfig.class);
     MessageProcessor mp = context.getBean("processor", MessageProcessor.class);
     mp.processMessage();
 }
@@ -164,6 +164,55 @@ public class MessageProcessor {...}
 ApplicationContext c = new AnnotationConfigApplicationContext(DemoAppConfig.class);
 MessageProcessor mp = c.getBean("processor", MessageProcessor.class);
 mp.processMessage();
+```
+
+### Java based <--> xml
+```
+ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+...
+
+@Configuration
+class AppConfig {
+
+// sources - vytvoria sa default konstruktorom, nepotrebuju parametre
+    @Bean(name="mySourceCon")
+    public DataSourceIfc dsConFactory(){return new DataSourceCon();}
+    @Bean(name = "mySourceSet")
+    public DataSourceIfc dsSetFactory() {return new DataSourceSet();}
+
+// constructor-based - dovnutra ide source, pouzije sa konstruktor
+    @Bean(name = "myProcessorCon")
+    public DataProcessorCon dpConFactory(@Named("mySourceCon") DataSourceIfc src){
+        DataProcessorCon dp = new DataProcessorCon(src);
+        return dp;
+    }  
+
+// setter-based - dovnutra ide source, pouzije sa setSource()
+    @Bean(name = "myProcessorSet")
+    public DataProcessorSet dpSetFactory(@Named("mySourceSet") DataSourceIfc src) {
+        DataProcessorSet dp = new DataProcessorSet();
+        dp.setSource(src);
+        return dp;
+    }   
+}
+
+-----------------------------------------------------------------------------------
+ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+...
+
+<bean id="mySourceCon" class="asos.DataSourceCon"/>
+<bean id="mySourceSet" class="asos.DataSourceSet">
+
+<!-- constructor-based -->
+<bean id="myProcessorCon" class="asos.DataProcessorCon">
+    <constructor-arg ref="mySourceCon">
+</bean>
+
+<!-- setter-based -->
+<bean id="myProcessorSet" class="asos.DataProcessorSet">
+    <property name="source" ref="mySourceSet">
+</bean>
+
 ```
 
 ## AOP
