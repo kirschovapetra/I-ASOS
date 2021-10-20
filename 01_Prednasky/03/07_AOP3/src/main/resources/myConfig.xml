@@ -19,8 +19,8 @@
             <aop:before method="beforeAdvice" pointcut-ref="pcBefore"/>
             
 <!--            <aop:pointcut id="pcAfter" expression="execution(* asos.DataSourceIfc.*(..))"/>
-            <aop:after-returning method="returnAdvice" pointcut-ref="pcAfter"/>-->
-                       
+            <aop:after-returning method="returnAdvice" pointcut-ref="pcAfter" returning="res"/>-->
+            
 <!--            <aop:pointcut id="pcAround" expression="execution(* asos.*.processData(int))"/>
             <aop:around method="aroundArgAdvice" pointcut-ref="pcAround"/>-->
                     
