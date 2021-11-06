@@ -4,6 +4,8 @@ Architektúra softvérových systémov (2. ročník ING, zimný semester)
 
 ## Web Services
 
+<br>
+
 ### Web aplikácia - server
 
     File -> New Project -> Java with Maven -> Web Application
@@ -12,6 +14,11 @@ Architektúra softvérových systémov (2. ročník ING, zimný semester)
 
     *klik na projekt* New -> Other -> Web Services -> Web service
 
+#### Async
+
+    @Oneway - iba pre void ktore nehadzu vynimky
+
+<br>
 
 ### Web aplikácia - klient
 
@@ -20,6 +27,14 @@ Architektúra softvérových systémov (2. ročník ING, zimný semester)
 #### Pridať WS klienta
 
     *klik na projekt* New -> Other -> Web Services -> Web Service Client
+
+#### Async
+    Web Service References -> Edit Web Servide Attribute -> MyWebService (alebo 
+    Global Customization) -> Enable Asynchronous Client
+
+* Async Polling - TODO 
+* Async callback - TODO
+
 
 ### Linky
 

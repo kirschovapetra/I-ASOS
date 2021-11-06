@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+">
+    <bean id="service" class="asos.MessageServiceMock"/>
+    <bean id="consumer" class="asos.MessageConsumerMock"/>
+    <bean id="processor" class="asos.MessageProcessor">
+        <constructor-arg ref="consumer"/>
+        <constructor-arg ref="service"/>
+    </bean>
+    
+    <bean id="logAspectBean" class="asos.LoggingAspect"/>
+    <bean id="counterAspectBean" class="asos.GetMessageCounter">
+        <property name="count" value="0"/>
+        <property name="sum" value="0"/>
+    </bean>
+
+    <aop:config>
+<!--        <aop:aspect id="logAspect" ref="logAspectBean">
+            <aop:pointcut id="pointcut" expression="execution(* asos.*.*(..))"/>
+            <aop:before method="logBefore" pointcut-ref="pointcut"/>  
+        </aop:aspect>-->
+        
+        <aop:aspect id="couterAspect" ref="counterAspectBean">
+            <aop:pointcut id="counterPointcut" expression="execution(* asos.*.getMessage(..))"/>
+            <aop:before method="addBefore" pointcut-ref="counterPointcut"/>
+            
+            <aop:pointcut id="sumPointcut" expression="execution(* asos.*.getMessage(..))" />  
+            <aop:after-returning method="sumAfter" returning="result"  pointcut-ref="sumPointcut"/>
+        </aop:aspect>
+    </aop:config>
+    
+</beans>

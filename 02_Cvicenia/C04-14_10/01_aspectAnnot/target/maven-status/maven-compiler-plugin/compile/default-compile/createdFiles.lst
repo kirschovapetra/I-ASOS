@@ -1,0 +1,7 @@
+asos/MessageProcessor.class
+asos/MessageConsumerMock.class
+asos/DemoApp.class
+asos/LoggingAspect.class
+asos/MessageConsumerIfc.class
+asos/MessageServiceMock.class
+asos/MessageServiceIfc.class

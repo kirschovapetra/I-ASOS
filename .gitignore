@@ -1,6 +1,6 @@
 VM/*
 Materialy/*
-05_SoapUI/*
+SoapUI-5.4.0/*
 /Cvicenia/01_SpringDemo/target/
 /Cvicenia/01/SpringDemo1/target/
 /Cvicenia/01/01_SpringDemo/target/
@@ -79,3 +79,94 @@ Materialy/*
 /01_Prednasky/04/01_Server/target/
 /02_Cvicenia/04/02_Server/target/
 /02_Cvicenia/04/02_Client/target/
+/02_Cvicenia/04_14.10./01_aspectAnnot/target/
+/02_Cvicenia/04_14.10./02_Client/target/
+/02_Cvicenia/04_14.10./02_Server/target/
+/02_Cvicenia/03_07.10./01_messageConsumer/target/
+/02_Cvicenia/03_07.10./02_logging/target/
+/02_Cvicenia/03_07.10./03_getMessageCounter/target/
+/02_Cvicenia/03_07.10./04_encryption/target/
+/02_Cvicenia/02_30.09./01_02_DI/target/
+/02_Cvicenia/02_30.09./03_Autowiring/target/
+/02_Cvicenia/02_30.09./04_AnnotationBased/target/
+/02_Cvicenia/02_30.09./05_JavaBasedContainer/target/
+/03_Zapocty/Z1/zapocet/z1spring/target/
+/05_Playground/CircularDep/target/
+/05_Playground/SkupinaA/uloha1/target/
+/05_Playground/SkupinaB/uloha1/target/
+/05_Playground/cvika/SpringDemo1/target/
+/05_Playground/cvika/cv8u2/target/
+/05_Playground/cvika/recap/target/
+/05_Playground/di/target/
+/05_Playground/prednasky/AOP/target/
+/05_Playground/prednasky/SpringDemo1/target/
+/05_Playground/prednasky/SpringDemo1_AnnotConfig/target/
+/05_Playground/prednasky/SpringDemo1_ComponentScan/target/
+/05_Playground/prednasky/SpringDemo1_JavaBased/target/
+/05_Playground/virtualka_test/target/
+/04_Playground/CircularDep/target/
+/04_Playground/SkupinaA/uloha1/target/
+/04_Playground/SkupinaB/uloha1/target/
+/04_Playground/cvika/SpringDemo1/target/
+/04_Playground/cvika/cv8u2/target/
+/04_Playground/cvika/recap/target/
+/04_Playground/di/target/
+/04_Playground/prednasky/AOP/target/
+/04_Playground/prednasky/SpringDemo1/target/
+/04_Playground/prednasky/SpringDemo1_AnnotConfig/target/
+/04_Playground/prednasky/SpringDemo1_ComponentScan/target/
+/04_Playground/prednasky/SpringDemo1_JavaBased/target/
+/04_Playground/virtualka_test/target/
+/01_Prednasky/05 - 19.10./01_Client/target/
+/01_Prednasky/05 - 19.10./01_Server/target/
+/01_Prednasky/05 - 19.10./01_Server_Async/target/
+/01_Prednasky/05 - 19.10./01_Client_Async/target/
+/01_Prednasky/05 - 19.10./01_ServerAsync/target/
+/01_Prednasky/05 - 19.10./01_ClientAsync/target/
+/01_Prednasky/02 - 28_9/01_HelloWorld/target/
+/01_Prednasky/02 - 28_9/02_SpringDemo1/target/
+/01_Prednasky/02 - 28_9/03_SpringDemo2/target/
+/01_Prednasky/02 - 28_9/04_SpringDemo2_autowired/target/
+/01_Prednasky/03 - 05_10/01_SpringDemo3_annot_netreba/target/
+/01_Prednasky/03 - 05_10/02_SpringDemo4_JavaBased/target/
+/01_Prednasky/03 - 05_10/03_SpringDemo5/target/
+/01_Prednasky/03 - 05_10/04_NedaSaPouzitCon/target/
+/01_Prednasky/03 - 05_10/05_AOP/target/
+/01_Prednasky/03 - 05_10/06_AOP2/target/
+/01_Prednasky/03 - 05_10/07_AOP3/target/
+/01_Prednasky/03 - 05_10/projekty z prednasky/p31/target/
+/01_Prednasky/03 - 05_10/projekty z prednasky/p32/target/
+/01_Prednasky/05 - 19_10/01_ClientAsync/target/
+/01_Prednasky/05 - 19_10/01_ServerAsync/target/
+/01_Prednasky/P02 - 28_9/01_HelloWorld/target/
+/01_Prednasky/P02 - 28_9/02_SpringDemo1/target/
+/01_Prednasky/P02 - 28_9/03_SpringDemo2/target/
+/01_Prednasky/P02 - 28_9/04_SpringDemo2_autowired/target/
+/01_Prednasky/P03 - 05_10/01_SpringDemo3_annot_netreba/target/
+/01_Prednasky/P03 - 05_10/02_SpringDemo4_JavaBased/target/
+/01_Prednasky/P03 - 05_10/03_SpringDemo5/target/
+/01_Prednasky/P03 - 05_10/04_NedaSaPouzitCon/target/
+/01_Prednasky/P03 - 05_10/05_AOP/target/
+/01_Prednasky/P03 - 05_10/06_AOP2/target/
+/01_Prednasky/P03 - 05_10/07_AOP3/target/
+/01_Prednasky/P03 - 05_10/projekty z prednasky/p31/target/
+/01_Prednasky/P03 - 05_10/projekty z prednasky/p32/target/
+/01_Prednasky/P05 - 19_10/01_ClientAsync/target/
+/01_Prednasky/P05 - 19_10/01_ServerAsync/target/
+/01_Prednasky/P05-19_10/01_ClientAsync/target/
+/01_Prednasky/P05-19_10/01_ServerAsync/target/
+/01_Prednasky/P03-05_10/01_SpringDemo3_annot_netreba/target/
+/01_Prednasky/P03-05_10/02_SpringDemo4_JavaBased/target/
+/01_Prednasky/P03-05_10/03_SpringDemo5/target/
+/01_Prednasky/P03-05_10/04_NedaSaPouzitCon/target/
+/01_Prednasky/P03-05_10/05_AOP/target/
+/01_Prednasky/P03-05_10/06_AOP2/target/
+/01_Prednasky/P03-05_10/07_AOP3/target/
+/01_Prednasky/P03-05_10/projekty z prednasky/p31/target/
+/01_Prednasky/P03-05_10/projekty z prednasky/p32/target/
+/01_Prednasky/P02-28_9/01_HelloWorld/target/
+/01_Prednasky/P02-28_9/02_SpringDemo1/target/
+/01_Prednasky/P02-28_9/03_SpringDemo2/target/
+/01_Prednasky/P02-28_9/04_SpringDemo2_autowired/target/
+/01_Prednasky/P05-19_10/02_OsobyServer/target/
+/01_Prednasky/P05-19_10/02_OsobyClient/target/
