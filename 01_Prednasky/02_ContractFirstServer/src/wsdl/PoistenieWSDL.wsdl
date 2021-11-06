@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions 
+xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" 
+xmlns:wsp="http://www.w3.org/ns/ws-policy" 
+xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" 
+xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" 
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:tns="http://ws/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns="http://schemas.xmlsoap.org/wsdl/" 
+targetNamespace="http://ws/" 
+name="PoistenieWSDL">
+
+    <types>
+        <xsd:schema targetNamespace="http://ws/">
+            <xsd:import namespace="http://ws/" schemaLocation="file:/home/petra/Documents/I-ASOS/01_Prednasky/P06-26_10/PoistSchema.xsd"/>
+        </xsd:schema>
+    </types>
+    
+    <message name="hladajRequest">
+        <part name="cisloZmluvy" element="tns:hladajRequest"/>
+    </message>
+    <message name="hladajResponse">
+        <part name="part1" element="tns:hladajResponse"/>
+    </message>
+
+    <portType name="PoistenieWSDLPortType">
+        
+        <operation name="hladaj">
+            <input name="input1" message="tns:hladajRequest"/>
+            <output name="output1" message="tns:hladajResponse"/>
+        </operation>
+
+    </portType>
+
+    <binding name="PoistenieWSDLBinding" type="tns:PoistenieWSDLPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        
+        <operation name="hladaj">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="PoistenieWSDLService">
+        <port name="PoistenieWSDLPort" binding="tns:PoistenieWSDLBinding">
+            <soap:address location="http://localhost:8080/PoistenieWSDLService/Poistenie"/>
+        </port>
+    </service>
+</definitions>

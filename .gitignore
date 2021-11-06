@@ -170,3 +170,8 @@ SoapUI-5.4.0/*
 /01_Prednasky/P02-28_9/04_SpringDemo2_autowired/target/
 /01_Prednasky/P05-19_10/02_OsobyServer/target/
 /01_Prednasky/P05-19_10/02_OsobyClient/target/
+/01_Prednasky/P06-26_10/01_CodeFirstServer/target/
+/01_Prednasky/P06-26_10/01_CodeFirstClient/target/
+/01_Prednasky/P06-26_10/02_ContractFirstServer/target/
+/01_Prednasky/P06-26_10/02_ContractFirstServerTest/target/
+/01_Prednasky/P06-26_10/mavenproject1/target/

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ws:hladajRequest>
+		abcd
+	 </ws:hladajRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

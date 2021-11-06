@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:tns="http://ws/" 
+    elementFormDefault="qualified"
+    targetNamespace="http://ws/">
+
+    <xs:simpleType name="DruhPoisteniaEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Cestovne" id="CESTOVNE"/>
+            <xs:enumeration value="Zivotne" id="ZIVOTNE"/>
+            <xs:enumeration value="PZP" id="PZP"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SumaType">
+        <xs:restriction base="xs:float">
+            <xs:minExclusive value="1.0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Osoba">
+        <xs:sequence>
+            <xs:element name="id" type="xs:ID" />
+            <xs:element name="datumNar" type="xs:date" minOccurs="0"/>
+            <xs:element name="meno" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Zmluva">
+        <xs:sequence>
+            <xs:element name="cislo" type="xs:string" minOccurs="0"/>
+            <xs:element name="druh" type="tns:DruhPoisteniaEnum" minOccurs="0"/>
+            <xs:element name="poistnaSuma" type="tns:SumaType"/>
+            <xs:element name="poistenci" type="tns:Osoba" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="majitel" type="xs:IDREF" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="vytvorRequest"  type="tns:Zmluva"/>
+    <xs:element name="vytvorResponse" type="xs:string"/>
+    <xs:element name="hladajRequest" type="xs:string"/>
+    <xs:element name="hladajResponse" type="tns:Zmluva"/>
+
+</xs:schema>
