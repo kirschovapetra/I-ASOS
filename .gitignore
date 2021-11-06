@@ -1,5 +1,6 @@
-VM/
-04_Materialy/*
+VM/*
+Materialy/*
+05_SoapUI/*
 /Cvicenia/01_SpringDemo/target/
 /Cvicenia/01/SpringDemo1/target/
 /Cvicenia/01/01_SpringDemo/target/
@@ -72,3 +73,9 @@ VM/
 /01_Prednasky/03/projekty z prednasky/p31/target/
 /01_Prednasky/03/projekty z prednasky/p32/target/
 /zapocet/z1spring/target/
+/01_Prednasky/04/01_webapp/target/
+/01_Prednasky/04/01_JavaApp/target/
+/01_Prednasky/04/01_Client/target/
+/01_Prednasky/04/01_Server/target/
+/02_Cvicenia/04/02_Server/target/
+/02_Cvicenia/04/02_Client/target/
