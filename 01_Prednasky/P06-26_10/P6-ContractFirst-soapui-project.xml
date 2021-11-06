@@ -1,9 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws/">
+<con:soapui-project id="974b70f9-9a00-48e7-b4a0-585d80d561d1" activeEnvironment="Default" name="P6_ContractFirst" resourceRoot="" soapui-version="5.4.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="8d1b4802-501d-4c8e-bc23-2a6210168dd3" wsaVersion="NONE" name="PoistenieFromWSDLPortBinding" type="wsdl" bindingName="{http://ws/}PoistenieFromWSDLPortBinding" soapVersion="1_1" anonymous="optional" definition="file:/home/petra/Documents/I-ASOS/01_Prednasky/P06-26_10/PoistenieFromWSDL.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/home/petra/Documents/I-ASOS/01_Prednasky/P06-26_10/PoistenieFromWSDL.wsdl"><con:part><con:url>file:/home/petra/Documents/I-ASOS/01_Prednasky/P06-26_10/PoistenieFromWSDL.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="http://ws/" name="PoistenieFromWSDL" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <!--schemaLocation="http://localhost:8080/mavenproject1/PoistenieFromWSDL?xsd=1"-->
+      <xsd:import namespace="http://ws/" schemaLocation="file:/home/petra/Documents/I-ASOS/01_Prednasky/P06-26_10/PoistenieFromWSDL.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="hladaj">
+    <part name="parameters" element="tns:hladaj"/>
+  </message>
+  <message name="hladajResponse">
+    <part name="parameters" element="tns:hladajResponse"/>
+  </message>
+  <portType name="PoistenieFromWSDL">
+    <operation name="hladaj">
+      <input wsam:Action="http://ws/PoistenieFromWSDL/hladajRequest" message="tns:hladaj"/>
+      <output wsam:Action="http://ws/PoistenieFromWSDL/hladajResponse" message="tns:hladajResponse"/>
+    </operation>
+  </portType>
+  <binding name="PoistenieFromWSDLPortBinding" type="tns:PoistenieFromWSDL">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="hladaj">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="PoistenieFromWSDL">
+    <port name="PoistenieFromWSDLPort" binding="tns:PoistenieFromWSDLPortBinding">
+      <soap:address location="http://localhost:8080/02_ContractFirstServer/PoistenieFromWSDL"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/home/petra/Documents/I-ASOS/01_Prednasky/P06-26_10/PoistenieFromWSDL.xsd</con:url><con:content><![CDATA[<xs:schema version="1.0" targetNamespace="http://ws/" xmlns:tns="http://ws/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="hladaj" type="tns:hladaj"/>
+  <xs:element name="hladajResponse" type="tns:hladajResponse"/>
+  <xs:complexType name="hladaj">
+    <xs:sequence>
+      <xs:element name="cisloZmluvy" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="hladajResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:zmluva" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="zmluva">
+    <xs:sequence>
+      <xs:element name="cislo" type="xs:string" minOccurs="0"/>
+      <xs:element name="druh" type="tns:druhPoisteniaEnum" minOccurs="0"/>
+      <xs:element name="majitel" type="xs:IDREF" minOccurs="0"/>
+      <xs:element name="poistenci" type="tns:osoba" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="poistnaSuma" type="tns:sumaType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="osoba">
+    <xs:sequence>
+      <xs:element name="datumNar" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="id" type="xs:ID" minOccurs="0"/>
+      <xs:element name="meno" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="druhPoisteniaEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CESTOVNE"/>
+      <xs:enumeration value="ZIVOTNE"/>
+      <xs:enumeration value="PZP"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="sumaType">
+    <xs:restriction base="xs:float">
+      <xs:minExclusive value="1.0"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/02_ContractFirstServer/PoistenieFromWSDL</con:endpoint></con:endpoints><con:operation id="244a4619-25f8-4081-9db5-b025bfe19bd0" isOneWay="false" action="" name="hladaj" bindingOperationName="hladaj" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="523296d9-2337-4fb4-81ee-d79ccc11141f" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/02_ContractFirstServer/PoistenieFromWSDL</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws/">
    <soapenv:Header/>
    <soapenv:Body>
-      <ws:hladajRequest>
-		abcd
-	 </ws:hladajRequest>
+      <ws:hladaj>
+         <!--Optional:-->
+         <cisloZmluvy>555</cisloZmluvy>
+      </ws:hladaj>
    </soapenv:Body>
-</soapenv:Envelope>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws/PoistenieFromWSDL/hladajRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
