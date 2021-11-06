@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="ac6b0ab6-f484-4bb7-8135-2f47a231f5e1" activeEnvironment="Default" name="P7_ContractFirstPt2" resourceRoot="" soapui-version="5.4.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="9711f720-d541-4d9d-800d-a363812b7a1d" wsaVersion="NONE" name="PoistenieFromWSDLPortBinding" type="wsdl" bindingName="{http://ws/}PoistenieFromWSDLPortBinding" soapVersion="1_1" anonymous="optional" definition="file:/home/petra/Documents/I-ASOS/01_Prednasky/P07-02_11/PoistenieFromWSDLpt2.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/home/petra/Documents/I-ASOS/01_Prednasky/P07-02_11/PoistenieFromWSDLpt2.wsdl"><con:part><con:url>file:/home/petra/Documents/I-ASOS/01_Prednasky/P07-02_11/PoistenieFromWSDLpt2.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="http://ws/" name="PoistenieFromWSDL" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://ws/" schemaLocation="file:/home/petra/Documents/I-ASOS/01_Prednasky/P07-02_11/PoistenieFromWSDLpt2.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="hladaj">
+    <part name="parameters" element="tns:hladaj"/>
+  </message>
+  <message name="hladajResponse">
+    <part name="parameters" element="tns:hladajResponse"/>
+  </message>
+  <message name="vytvor">
+    <part name="parameters" element="tns:vytvor"/>
+  </message>
+  <message name="vytvorResponse">
+    <part name="parameters" element="tns:vytvorResponse"/>
+  </message>
+  <portType name="PoistenieFromWSDL">
+    <operation name="hladaj">
+      <input wsam:Action="http://ws/PoistenieFromWSDL/hladajRequest" message="tns:hladaj"/>
+      <output wsam:Action="http://ws/PoistenieFromWSDL/hladajResponse" message="tns:hladajResponse"/>
+    </operation>
+    <operation name="vytvor">
+      <input wsam:Action="http://ws/PoistenieFromWSDL/vytvorRequest" message="tns:vytvor"/>
+      <output wsam:Action="http://ws/PoistenieFromWSDL/vytvorResponse" message="tns:vytvorResponse"/>
+    </operation>
+  </portType>
+  <binding name="PoistenieFromWSDLPortBinding" type="tns:PoistenieFromWSDL">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="hladaj">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="vytvor">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="PoistenieFromWSDL">
+    <port name="PoistenieFromWSDLPort" binding="tns:PoistenieFromWSDLPortBinding">
+      <soap:address location="http://localhost:8080/02_ContractFirstServer_pt2/PoistenieFromWSDL"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/home/petra/Documents/I-ASOS/01_Prednasky/P07-02_11/PoistenieFromWSDLpt2.xsd</con:url><con:content><![CDATA[<xs:schema version="1.0" targetNamespace="http://ws/" xmlns:tns="http://ws/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="hladaj" type="tns:hladaj"/>
+  <xs:element name="hladajResponse" type="tns:hladajResponse"/>
+  <xs:element name="vytvor" type="tns:vytvor"/>
+  <xs:element name="vytvorResponse" type="tns:vytvorResponse"/>
+  <xs:complexType name="hladaj">
+    <xs:sequence>
+      <xs:element name="cisloZmluvy" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="hladajResponse">
+    <xs:sequence>
+      <xs:element name="zmluva" type="tns:zmluva" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="vytvor">
+    <xs:sequence>
+      <xs:element name="zmluva" type="tns:zmluva" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="vytvorResponse">
+    <xs:sequence>
+      <xs:element name="cisloZmluvy" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="zmluva">
+    <xs:complexContent>
+      <xs:extension base="tns:navrh">
+        <xs:sequence>
+          <xs:element name="druh" type="tns:druhPoisteniaEnum" minOccurs="0"/>
+          <xs:element name="poistnaSuma" type="tns:sumaType"/>
+          <xs:element name="ucastnici" type="tns:osoba" minOccurs="1" maxOccurs="unbounded"/>
+          <xs:element name="majitel" type="xs:IDREF" minOccurs="0"/>
+          <xs:element name="poistenci" type="xs:IDREFS" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="navrh">
+    <xs:sequence>
+      <xs:element name="cislo" type="xs:string" minOccurs="0"/>
+      <xs:element name="uzavreta" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="adresa">
+    <xs:sequence>
+      <xs:element name="ulica" type="xs:string" minOccurs="0"/>
+      <xs:element name="psc" type="tns:pscType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="osoba">
+    <xs:sequence>
+      <xs:element name="datumNar" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="id" type="xs:ID" minOccurs="0"/>
+      <xs:element name="meno" type="xs:string" minOccurs="0"/>
+      <xs:element name="bydlisko" type="tns:adresa" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="druhPoisteniaEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CESTOVNE"/>
+      <xs:enumeration value="ZIVOTNE"/>
+      <xs:enumeration value="PZP"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="sumaType">
+    <xs:restriction base="xs:float">
+      <xs:minExclusive value="1.0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="pscType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{5}"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/02_ContractFirstServer_pt2/PoistenieFromWSDL</con:endpoint></con:endpoints><con:operation id="a65b9e31-d4ae-4f1d-9944-27c5733219d3" isOneWay="false" action="" name="hladaj" bindingOperationName="hladaj" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="897908ec-31b2-4bff-9308-43a7754dfd5f" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/02_ContractFirstServer_pt2/PoistenieFromWSDL</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ws:hladaj>
+         <!--Optional:-->
+         <cisloZmluvy>aaabbb666</cisloZmluvy>
+      </ws:hladaj>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws/PoistenieFromWSDL/hladajRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="111833dd-669f-42f4-a2d5-c78d523337e0" isOneWay="false" action="" name="vytvor" bindingOperationName="vytvor" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2fc2175d-608f-43a2-a8ff-2dadeefb798b" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/02_ContractFirstServer_pt2/PoistenieFromWSDL</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ws:vytvor> 
+         <zmluva>
+            <cislo>nejakeCislo123</cislo>
+            <uzavreta>2021-01-01</uzavreta>
+            <druh>CESTOVNE</druh>
+            <poistnaSuma>1234.5</poistnaSuma>
+            
+            <ucastnici>
+               <datumNar>1900-01-01</datumNar>
+               <id>xy12</id>
+               <meno>djdkjfksd</meno>
+               <bydlisko>
+                  <ulica>rfrsefrsedf</ulica>
+                  <psc>11111</psc>
+               </bydlisko>
+            </ucastnici>
+            <ucastnici>
+               <datumNar>1800-01-01</datumNar>
+               <id>ab21</id>
+               <meno>djdkjfksd</meno>
+               <bydlisko>
+                  <ulica>rfrsefrsedf</ulica>
+                  <psc>11111</psc>
+               </bydlisko>
+            </ucastnici>
+            
+            <majitel>xy12</majitel>
+            <poistenci>xy12 ab21</poistenci>
+         </zmluva>
+      </ws:vytvor>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws/PoistenieFromWSDL/vytvorRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.4.2 (UNKNOWN-17d59c9; 2018-09-26T15:16:30-0700) JAXWS-RI/2.3.1 JAXWS-API/2.3.1 JAXB-RI/2.3.1 JAXB-API/2.3.1 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws/">
+
+<xs:element name="hladaj" type="tns:hladaj"/>
+<xs:element name="hladajResponse" type="tns:hladajResponse"/>
+
+<xs:complexType name="hladaj">
+    <xs:sequence>
+        <xs:element name="cisloZmluvy" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="hladajResponse">
+    <xs:sequence>
+        <xs:element name="return" type="tns:zmluva" minOccurs="0"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="zmluva">
+    <xs:sequence>
+        <xs:element name="cislo" type="xs:string" minOccurs="0"/>
+        <xs:element name="druh" type="tns:druhPoisteniaEnum" minOccurs="0"/>
+        <xs:element name="majitel" type="xs:IDREF" minOccurs="0"/>
+        <xs:element name="poistenci" type="tns:osoba" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="poistnaSuma" type="tns:sumaType"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="osoba">
+    <xs:sequence>
+        <xs:element name="datumNar" type="xs:dateTime" minOccurs="0"/>
+        <xs:element name="id" type="xs:ID" minOccurs="0"/>
+        <xs:element name="meno" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:simpleType name="druhPoisteniaEnum">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="CESTOVNE"/>
+        <xs:enumeration value="ZIVOTNE"/>
+        <xs:enumeration value="PZP"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="sumaType">
+        <xs:restriction base="xs:float">
+            <xs:minExclusive value="1.0"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
