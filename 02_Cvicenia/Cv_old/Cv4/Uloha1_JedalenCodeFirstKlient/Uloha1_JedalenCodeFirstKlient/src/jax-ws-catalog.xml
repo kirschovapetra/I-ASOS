@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/Uloha1_JedalenCodeFirst/JedalenServis?WSDL" uri="wsdl/localhost_8080/Uloha1_JedalenCodeFirst/JedalenServis.wsdl"/>
+    <system systemId="http://localhost:8080/Uloha1_JedalenCodeFirst/JedalenServis?xsd=1" uri="wsdl/localhost_8080/Uloha1_JedalenCodeFirst/JedalenServis.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/Uloha1_JedalenCodeFirst/JedalenServisMap?WSDL" uri="wsdl/localhost_8080/Uloha1_JedalenCodeFirst/JedalenServisMap.wsdl"/>
+    <system systemId="http://localhost:8080/Uloha1_JedalenCodeFirst/JedalenServisMap?xsd=1" uri="wsdl/localhost_8080/Uloha1_JedalenCodeFirst/JedalenServisMap.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/Uloha1_JedalenCodeFirst_Map/JedalenServisMap?WSDL" uri="wsdl/localhost_8080/Uloha1_JedalenCodeFirst_Map/JedalenServisMap.wsdl"/>
+    <system systemId="http://localhost:8080/Uloha1_JedalenCodeFirst_Map/JedalenServisMap?xsd=1" uri="wsdl/localhost_8080/Uloha1_JedalenCodeFirst_Map/JedalenServisMap.xsd_1.xsd"/>
+</catalog>

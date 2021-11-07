@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.4.2 (UNKNOWN-17d59c9; 2018-09-26T15:16:30-0700) JAXWS-RI/2.3.1 JAXWS-API/2.3.1 JAXB-RI/2.3.1 JAXB-API/2.3.1 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws/">
+
+<xs:element name="Exception" type="tns:Exception"/>
+
+<xs:element name="addJedlo" type="tns:addJedlo"/>
+
+<xs:element name="addJedloResponse" type="tns:addJedloResponse"/>
+
+<xs:element name="getMenu" type="tns:getMenu"/>
+
+<xs:element name="getMenuResponse" type="tns:getMenuResponse"/>
+
+<xs:complexType name="getMenu">
+<xs:sequence>
+<xs:element name="den" type="tns:denEnum" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMenuResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:menuMap" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="menuMap">
+<xs:sequence>
+<xs:element name="den" type="tns:denEnum" minOccurs="0"/>
+<xs:element name="ponuka">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="key" minOccurs="0" type="xs:string"/>
+<xs:element name="value" minOccurs="0" type="tns:jedlo"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="jedlo">
+<xs:sequence>
+<xs:element name="cena" type="xs:double" minOccurs="0"/>
+<xs:element name="nazov" type="xs:string" minOccurs="0"/>
+<xs:element name="popis" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Exception">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addJedlo">
+<xs:sequence>
+<xs:element name="jedlo" type="tns:jedlo" minOccurs="0"/>
+<xs:element name="den" type="tns:denEnum" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addJedloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:simpleType name="denEnum">
+<xs:restriction base="xs:string">
+<xs:enumeration value="PONDELOK"/>
+<xs:enumeration value="UTOROK"/>
+<xs:enumeration value="STREDA"/>
+<xs:enumeration value="STVRTOK"/>
+<xs:enumeration value="PIATOK"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>

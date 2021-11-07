@@ -32,8 +32,21 @@ Architektúra softvérových systémov (2. ročník ING, zimný semester)
     Web Service References -> Edit Web Servide Attribute -> MyWebService (alebo 
     Global Customization) -> Enable Asynchronous Client
 
-* Async Polling - TODO 
-* Async callback - TODO
+* Async Polling 
+* Async callback 
+
+### XMLGregorianCalendar conversion
+
+```
+private XMLGregorianCalendar xmlGC(int y, int m, int d) {
+    GregorianCalendar c = new GregorianCalendar(y,m,d);
+    XMLGregorianCalendar xmlDate = null;
+
+    try {
+        xmlDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+    } catch (DatatypeConfigurationException ex) {}
+}
+```
 
 
 ### Linky
