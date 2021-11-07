@@ -1,0 +1,5 @@
+ejb/JedloFacadeLocal.class
+ejb/AbstractFacade.class
+entities/Jedlo.class
+ejb/JedloFacade.class
+ws/JedalenEJB.class
