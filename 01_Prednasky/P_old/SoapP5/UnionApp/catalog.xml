@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/media/sf_WORK/ASOS/2020/Soap/xmlproject/src/UnionWSDL.wsdl" uri="src/conf/xml-resources/web-services/UnionServiceFromWSDL/wsdl/UnionWSDL.wsdl"/>
+    <system systemId="file:/media/sf_WORK/ASOS/2020/Soap/xmlproject/src/UnionSchema.xsd" uri="src/conf/xml-resources/web-services/UnionServiceFromWSDL/wsdl/UnionSchema.xsd"/>
+</catalog>

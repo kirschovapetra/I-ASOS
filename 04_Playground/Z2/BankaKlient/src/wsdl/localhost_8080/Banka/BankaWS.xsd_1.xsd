@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.4.2 (UNKNOWN-17d59c9; 2018-09-26T15:16:30-0700) JAXWS-RI/2.3.1 JAXWS-API/2.3.1 JAXB-RI/2.3.1 JAXB-API/2.3.1 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws/">
+
+<xs:element name="Exception" type="tns:Exception"/>
+
+<xs:element name="addAccount" type="tns:addAccount"/>
+
+<xs:element name="addAccountResponse" type="tns:addAccountResponse"/>
+
+<xs:element name="addClient" type="tns:addClient"/>
+
+<xs:element name="addClientResponse" type="tns:addClientResponse"/>
+
+<xs:element name="cancelTransfer" type="tns:cancelTransfer"/>
+
+<xs:element name="cancelTransferResponse" type="tns:cancelTransferResponse"/>
+
+<xs:element name="createTransfer" type="tns:createTransfer"/>
+
+<xs:element name="createTransferResponse" type="tns:createTransferResponse"/>
+
+<xs:element name="deposit" type="tns:deposit"/>
+
+<xs:element name="depositResponse" type="tns:depositResponse"/>
+
+<xs:element name="getAccounts" type="tns:getAccounts"/>
+
+<xs:element name="getAccountsResponse" type="tns:getAccountsResponse"/>
+
+<xs:element name="getCancelledTransactions" type="tns:getCancelledTransactions"/>
+
+<xs:element name="getCancelledTransactionsResponse" type="tns:getCancelledTransactionsResponse"/>
+
+<xs:element name="getClients" type="tns:getClients"/>
+
+<xs:element name="getClientsResponse" type="tns:getClientsResponse"/>
+
+<xs:element name="getNotCancelledTransactions" type="tns:getNotCancelledTransactions"/>
+
+<xs:element name="getNotCancelledTransactionsResponse" type="tns:getNotCancelledTransactionsResponse"/>
+
+<xs:element name="withdraw" type="tns:withdraw"/>
+
+<xs:element name="withdrawResponse" type="tns:withdrawResponse"/>
+
+<xs:complexType name="addClient">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="address" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addClientResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Exception">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getNotCancelledTransactions">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getNotCancelledTransactionsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:bankTransfer" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="bankTransfer">
+<xs:sequence>
+<xs:element name="amount" type="xs:double"/>
+<xs:element name="cancelledAt" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="createdAt" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="id" type="xs:int"/>
+<xs:element name="src" type="tns:bankAccount" minOccurs="0"/>
+<xs:element name="trg" type="tns:bankAccount" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="bankAccount">
+<xs:sequence>
+<xs:element name="balance" type="xs:double"/>
+<xs:element name="currency" type="tns:currency" minOccurs="0"/>
+<xs:element name="iban" type="xs:string" minOccurs="0"/>
+<xs:element name="owner" type="tns:client" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="client">
+<xs:sequence>
+<xs:element name="address" type="xs:string" minOccurs="0"/>
+<xs:element name="bankAccounts" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="id" type="xs:int"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createTransfer">
+<xs:sequence>
+<xs:element name="src" type="xs:string" minOccurs="0"/>
+<xs:element name="trg" type="xs:string" minOccurs="0"/>
+<xs:element name="amount" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createTransferResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="withdraw">
+<xs:sequence>
+<xs:element name="arg0" type="tns:bankAccount" minOccurs="0"/>
+<xs:element name="arg1" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="withdrawResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="addAccount">
+<xs:sequence>
+<xs:element name="iban" type="xs:string" minOccurs="0"/>
+<xs:element name="ownerId" type="xs:int"/>
+<xs:element name="balance" type="xs:double"/>
+<xs:element name="currency" type="tns:currency" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addAccountResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getClients">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getClientsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:client" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getAccounts">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getAccountsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:bankAccount" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCancelledTransactions">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getCancelledTransactionsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:bankTransfer" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cancelTransfer">
+<xs:sequence>
+<xs:element name="transferId" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cancelTransferResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deposit">
+<xs:sequence>
+<xs:element name="arg0" type="tns:bankAccount" minOccurs="0"/>
+<xs:element name="arg1" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="depositResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:simpleType name="currency">
+<xs:restriction base="xs:string">
+<xs:enumeration value="CZK"/>
+<xs:enumeration value="EUR"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>

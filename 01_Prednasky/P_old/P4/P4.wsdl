@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="poist2" targetNamespace="http://j2ee.netbeans.org/wsdl/p4xml/src/poist2"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/p4xml/src/poist2" xmlns:ns="http://xml.netbeans.org/schema/p4Schema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types>
+        <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/p4xml/src/poist2">
+            <xsd:import namespace="http://xml.netbeans.org/schema/p4Schema" schemaLocation="p4Schema.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="navrhZmluvyRequest">
+        <part name="part1" element="ns:navrhReq"/>
+    </message>
+    <message name="navrhZmluvyResponse">
+        <part name="part1" element="ns:navrhResp"/>
+    </message>
+    <portType name="poist2PortType">
+        <operation name="navrhZmluvy">
+            <input name="input1" message="tns:navrhZmluvyRequest"/>
+            <output name="output1" message="tns:navrhZmluvyResponse"/>
+        </operation>
+    </portType>
+    <binding name="poist2Binding" type="tns:poist2PortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="navrhZmluvy">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="poist2Service">
+        <port name="poist2Port" binding="tns:poist2Binding">
+            <soap:address location="http://localhost:${HttpDefaultPort}/poist2Service/poist2Port"/>
+        </port>
+    </service>
+</definitions>

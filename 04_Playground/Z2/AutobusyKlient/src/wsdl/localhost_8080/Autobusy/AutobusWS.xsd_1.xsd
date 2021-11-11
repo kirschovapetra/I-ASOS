@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.4.2 (UNKNOWN-17d59c9; 2018-09-26T15:16:30-0700) JAXWS-RI/2.3.1 JAXWS-API/2.3.1 JAXB-RI/2.3.1 JAXB-API/2.3.1 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws/">
+
+<xs:element name="Exception" type="tns:Exception"/>
+
+<xs:element name="cestovnyPoriadok" type="tns:cestovnyPoriadok"/>
+
+<xs:element name="cestovnyPoriadokResponse" type="tns:cestovnyPoriadokResponse"/>
+
+<xs:element name="pridajSpoj" type="tns:pridajSpoj"/>
+
+<xs:element name="pridajSpojResponse" type="tns:pridajSpojResponse"/>
+
+<xs:element name="rezervujMiesto" type="tns:rezervujMiesto"/>
+
+<xs:element name="rezervujMiestoResponse" type="tns:rezervujMiestoResponse"/>
+
+<xs:complexType name="rezervujMiesto">
+<xs:sequence>
+<xs:element name="spoj" type="xs:string" minOccurs="0"/>
+<xs:element name="miesto" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="rezervujMiestoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cestovnyPoriadok">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="cestovnyPoriadokResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:spoj" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="spoj">
+<xs:sequence>
+<xs:element name="ciel" type="xs:string" minOccurs="0"/>
+<xs:element name="nazov" type="xs:string" minOccurs="0"/>
+<xs:element name="volneMiesta" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="pridajSpoj">
+<xs:sequence>
+<xs:element name="nazov" type="xs:string" minOccurs="0"/>
+<xs:element name="ciel" type="xs:string" minOccurs="0"/>
+<xs:element name="volneMiesta" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="pridajSpojResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="Exception">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

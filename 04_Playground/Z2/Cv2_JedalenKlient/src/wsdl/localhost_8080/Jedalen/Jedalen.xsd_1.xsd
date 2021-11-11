@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.4.2 (UNKNOWN-17d59c9; 2018-09-26T15:16:30-0700) JAXWS-RI/2.3.1 JAXWS-API/2.3.1 JAXB-RI/2.3.1 JAXB-API/2.3.1 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws/">
+
+<xs:element name="Exception" type="tns:Exception"/>
+
+<xs:element name="findNextPrime" type="tns:findNextPrime"/>
+
+<xs:element name="findNextPrimeResponse" type="tns:findNextPrimeResponse"/>
+
+<xs:element name="info" type="tns:info"/>
+
+<xs:element name="infoResponse" type="tns:infoResponse"/>
+
+<xs:element name="objednaj" type="tns:objednaj"/>
+
+<xs:element name="objednajResponse" type="tns:objednajResponse"/>
+
+<xs:element name="odstranJedlo" type="tns:odstranJedlo"/>
+
+<xs:element name="pocetObjednavok" type="tns:pocetObjednavok"/>
+
+<xs:element name="pocetObjednavokResponse" type="tns:pocetObjednavokResponse"/>
+
+<xs:element name="ponuka" type="tns:ponuka"/>
+
+<xs:element name="ponukaResponse" type="tns:ponukaResponse"/>
+
+<xs:element name="vytvorJedlo" type="tns:vytvorJedlo"/>
+
+<xs:element name="vytvorJedloResponse" type="tns:vytvorJedloResponse"/>
+
+<xs:element name="zmenCenu" type="tns:zmenCenu"/>
+
+<xs:element name="zmenCenuResponse" type="tns:zmenCenuResponse"/>
+
+<xs:element name="zmenPopis" type="tns:zmenPopis"/>
+
+<xs:element name="zmenPopisResponse" type="tns:zmenPopisResponse"/>
+
+<xs:complexType name="pocetObjednavok">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="pocetObjednavokResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="objednaj">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="objednajResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Exception">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="odstranJedlo">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ponuka">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="ponukaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findNextPrime">
+<xs:sequence>
+<xs:element name="arg0" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findNextPrimeResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="info">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="infoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:jedlo" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="jedlo">
+<xs:sequence>
+<xs:element name="cena" type="xs:double"/>
+<xs:element name="nazov" type="xs:string" minOccurs="0"/>
+<xs:element name="popis" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="zmenPopis">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="zmenPopisResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="zmenCenu">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="zmenCenuResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="vytvorJedlo">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+<xs:element name="arg2" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="vytvorJedloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
