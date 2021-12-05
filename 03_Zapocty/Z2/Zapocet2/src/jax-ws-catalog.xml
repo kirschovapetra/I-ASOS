@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://147.175.121.241:8080/Zapocet21/LetiskoWS?wsdl" uri="wsdl/147.175.121.241_8080/Zapocet21/LetiskoWS.wsdl"/>
+    <system systemId="http://147.175.121.241:8080/Zapocet21/LetiskoWS?xsd=1" uri="wsdl/147.175.121.241_8080/Zapocet21/LetiskoWS.xsd_1.xsd"/>
+</catalog>

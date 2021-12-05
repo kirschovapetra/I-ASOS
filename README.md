@@ -6,6 +6,28 @@ Architektúra softvérových systémov (2. ročník ING, zimný semester)
 
 <br>
 
+### Linky
+
+* GlassFish admin console: http://localhost:4848/common/index.jsf
+* Index: http://localhost:8080/NazovProjektu/
+* Tester: http://localhost:8080/NazovProjektu/NazovServisu?Tester
+* WSDL: http://localhost:8080/NazovProjektu/NazovServisu?WSDL
+
+<br>
+
+### XMLGregorianCalendar conversion
+
+```
+private XMLGregorianCalendar xmlGC(int y, int m, int d) {
+    GregorianCalendar c = new GregorianCalendar(y,m,d);
+    XMLGregorianCalendar xmlDate = null;
+
+    try {
+        xmlDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+    } catch (DatatypeConfigurationException ex) {}
+}
+```
+
 ### Web aplikácia - server
 
     File -> New Project -> Java with Maven -> Web Application
@@ -34,24 +56,3 @@ Architektúra softvérových systémov (2. ročník ING, zimný semester)
 
 * Async Polling 
 * Async callback 
-
-### XMLGregorianCalendar conversion
-
-```
-private XMLGregorianCalendar xmlGC(int y, int m, int d) {
-    GregorianCalendar c = new GregorianCalendar(y,m,d);
-    XMLGregorianCalendar xmlDate = null;
-
-    try {
-        xmlDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
-    } catch (DatatypeConfigurationException ex) {}
-}
-```
-
-
-### Linky
-
-* GlassFish admin console: http://localhost:4848/common/index.jsf
-* Index: http://localhost:8080/NazovProjektu/
-* Tester: http://localhost:8080/NazovProjektu/NazovServisu?Tester
-* WSDL: http://localhost:8080/NazovProjektu/NazovServisu?WSDL
