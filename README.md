@@ -76,8 +76,9 @@ static Stream getStdInLines() {
 <br>
 
 ```
-SparkConf conf = new SparkConf().setAppName("meno aplikacie").setMaster("local"); 
-JavaSparkContext sc = new JavaSparkContext(conf);
+JavaSparkContext sc = new JavaSparkContext(
+    new SparkConf().setAppName("meno aplikacie").setMaster("local")
+);
 sc.setLogLevel("ERROR");
 ```
 
@@ -244,3 +245,57 @@ fwdd.mapToPair(itm -> new Tuple2<String, String>(itm._2, itm._1))
 
 
 
+Zhrnutie
+
+Aké výpočty možno paralelizovať?
+
+Algoritmy, v ktorých sa aplikuje ten istý výpočet (funkcia) na sadu (kolekciu, stream) objektov s rovnakou štruktútou (typom) možno veľmi jednpducho paralelizovať. Preto jazyky a frameworky poskytujú na podporu paralelizácie špeciálne - paralelné/distribuované kolekcie. Tieto kolekcie majú metódy umožňujúce paralelné vykonávanie rôznych typov výpočtov (z matematického pohľadu funkcií) nad nimi.
+
+Java8 poskytuje možnosť využitia funkcionlneho programovania pre kolekciu Stream<T>. Jej verzia ParallelStream umožňje aj paralelizáciu na počítačoch s viacerými jadrami. Stream-metódy majú ako argument funkciu, príp. lambda výraz, ktorý aplikujú a členy kolekcie.
+
+map
+
+aplikuje funkciu f: x ∊ T => f(x) ∊ S samostatne na každý objekt v kolekcii.
+
+výstup: nová kolekcia rovnakej veľkosti (členy výstupnej kolekcie sú typu S)
+
+Pozn. Funkcie tu zapisujeme a chápeme formálne ako v matematike: t.j ako zobrazenie (predpis) priraďujúce prvku jednej množiny (objektu jedného typu) prvok druhej množiny.
+
+reduce
+
+aplikuje binárnu operáciu f: (x,y) ∊ TxT => f(x,y) ∊ T celú kolekciu objektov typu T a zredukuje ju na jediný objekt typu T.
+
+výstup: objekt typu T.
+
+binárna operácia f musí byť asociatívna aj komutatívna.
+
+filter
+
+aplikuje predikát p: x ∊ T => p(x) ∊ {true,false} samostatne na každý objekt v kolekcii.
+
+výstup: nová kolekcia, obsahujúca tie členy vstupnej kolekcie, pre ktoré je predikát pravdivý.
+flatMap
+
+aplikuje funkciu f: x ∊ T => f(x) ∊ Sn t.j. výstup f(x) je kolekcia objektov typu S.
+
+výstupná kolekcia je kolekcia objektov typu S, ktorá vznikne spojením kolekcii f(x) pre všetky objekty vstupnej kolekcie.
+forEach
+
+aplikuje funkciu void f ( T x ).
+
+Výstupom metódy forEach nie je nová kolekcia ani žiadna hodnota, ako výstup môže využiť len side-efekty.
+Pozn. Keďže void funkcia nemá návratovú hodnotu, nie je to funkcia v matematickom zmysle.
+
+Ďalšie užitočné java8-stream metódy, ktoré nemajú funkcionálny argument:
+
+count
+
+limit
+
+collect
+
+Všetky tieto metódy možno rozdeliť do 2 kategórií podľa toho čo je ich výstupom
+
+Transformácie - výstup je nový stream
+
+Akcie - výstup je hodnota.
