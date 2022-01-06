@@ -11,6 +11,7 @@ import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.broadcast.Broadcast;
+import org.apache.spark.storage.StorageLevel;
 import org.apache.spark.util.DoubleAccumulator;
 import scala.Tuple2;
 
@@ -39,7 +40,9 @@ public class NewMain {
 //        pr7_Logging(rdd);
 //        pr8_Accumulator(rdd);
 //        pr8_Accumulator_v2(rdd);
-        pr8_Accumulator_v3(rdd);
+//        pr8_Accumulator_v3(rdd);
+//        pr9_Persist(rdd);
+        pr9_Persist_v2(rdd);
 
     }
 
@@ -452,5 +455,37 @@ public class NewMain {
 
     }
 
-
+    static void pr9_Persist(JavaRDD<Ucet> rdd) {
+        
+        JavaRDD<Ucet> rdd2 = rdd.map(u -> doStuff(u));
+        // Map vykoná 2x, vždy odznovu pre pôvodnú rdd.
+        System.out.println("count: " + rdd2.count());
+        System.out.println("collect: " + rdd2.collect());
+      
+        System.out.println("\n ------ \n");
+        
+        // Persist uloží účty s pripočítaným úrokom do pamate.
+        rdd2.persist(StorageLevel.MEMORY_ONLY());
+       
+        // Teraz sa map vykoná len 1. krat, pri count(). 
+        // Pri collect sa použije uložený stav účtov s úrokmi.
+        System.out.println("persist count: " + rdd2.count());
+        System.out.println("persist collect: " + rdd2.collect());
+    }
+    
+    static void pr9_Persist_v2(JavaRDD<Ucet> rdd){
+        JavaRDD<Ucet> rdd2 = rdd.map(u -> doStuff(u));
+        rdd2.persist(StorageLevel.MEMORY_ONLY());
+        // aj teraz sa vykona map
+        rdd2.count();
+        
+        System.out.println("\n ------ \n");
+        
+        JavaRDD<Ucet> rdd3 = rdd.map(u -> doStuff(u));
+        // map sa este nevykona
+        rdd3.persist(StorageLevel.MEMORY_ONLY());
+        // map sa vykona az teraz len na jednom cpu
+        rdd3.first();
+    }
+    
 }
